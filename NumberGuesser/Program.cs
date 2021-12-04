@@ -8,7 +8,7 @@ while (true)
 
     Random random = new Random();
 
-    int lowerLimit = 0;
+    int lowerLimit = 1;
 
     int upperLimit = 11;
 
@@ -18,7 +18,7 @@ while (true)
 
     int guessCount = 0;
 
-    Console.WriteLine("Guess a number between 1 and 10");
+    PrintColorMessage(ConsoleColor.Green, "Guess a number between 1 and 10");
 
 
     // While userGuess is not correct
@@ -47,30 +47,33 @@ while (true)
             guessCount++;
         }
 
-        else
+        else if (userGuess < correctNumber)
         {
             PrintColorMessage(ConsoleColor.Red, "Guess is too low! Please try again!");
             guessCount++;
         }
     }
 
-    PrintColorMessage(ConsoleColor.Yellow, $"CORRECT! You guessed the answer in {guessCount} tries!");
+    guessCount++;
+    PrintColorMessage(ConsoleColor.Yellow, $"CORRECT! You guessed the correct answer {correctNumber} in only {guessCount} tries!");
 
-    Console.WriteLine("Play Again? [Y or N]");
+    PrintColorMessage(ConsoleColor.Green, "Play Again? [Y or N]");
 
     string answer = Console.ReadLine().ToUpper();
 
     if (answer == "Y" || answer == "YES")
     {
+        PrintColorMessage(ConsoleColor.Green, $"You answered YES. Lets play again!");
         continue;
     }
     else if (answer == "N" || answer == "NO")
     {
+        PrintColorMessage(ConsoleColor.Red, $"You answered NO. Thank you for playing.");
         return;
     }
     else
     {
-        PrintColorMessage(ConsoleColor.Red, $"{answer} is not an option. Thank you.");
+        PrintColorMessage(ConsoleColor.Red, $"{answer} is not an option. Thank you for playing.");
         return;
     }
 }           
@@ -90,7 +93,7 @@ static void GetAppInfo()
 
 static void GreetUser()
 {
-    Console.WriteLine("What is your name?");
+    PrintColorMessage(ConsoleColor.Green, "What is your name?");
 
     string inputName = Console.ReadLine();
 
@@ -103,7 +106,7 @@ static void GreetUser()
     {
     string fixedName = char.ToUpper(inputName[0]) + inputName.Substring(1);
 
-    PrintColorMessage(ConsoleColor.Blue, $"Hello {fixedName}, Lets play a game!");
+    PrintColorMessage(ConsoleColor.Green, $"Hello {fixedName}, Lets play a game!");
     }
 
 }
